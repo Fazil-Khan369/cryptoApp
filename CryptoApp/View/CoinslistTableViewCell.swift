@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CoinslistTableViewCell: UITableViewCell, CoinTableViewDelegate {
+class CoinslistTableViewCell: UITableViewCell {
    
     static let identifier = "CoinslistTableViewCell"
     
@@ -69,8 +69,6 @@ class CoinslistTableViewCell: UITableViewCell, CoinTableViewDelegate {
     }()
 
 
-    
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(named: "cellColor")
@@ -113,23 +111,6 @@ class CoinslistTableViewCell: UITableViewCell, CoinTableViewDelegate {
         self.Dollar_rate.text = String(format: "%.2f", data.quote?.usd?.price ?? 0.0)
         self.Per_hour.text = String(format: "%.2f", data.quote?.usd?.percentChange1H ?? 0.0)
 
-    }
-    
-    func didTapRefreshButton() {
-        refreshDate()
-    }
-    
-    func refreshDate() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
-        Namelabel.text = dateString
-        Iconlabel.text = dateString
-        Dollar_rate.text = dateString
-        Per_hour.text = dateString
-        
     }
     
     

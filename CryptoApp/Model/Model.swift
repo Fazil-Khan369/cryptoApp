@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 struct MainData: Codable {
     let data: [Data]
     

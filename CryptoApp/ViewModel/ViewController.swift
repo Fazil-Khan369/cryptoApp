@@ -7,15 +7,9 @@
 
 import UIKit
 
-protocol CoinTableViewDelegate: class {
-    func didTapRefreshButton()
-}
-
 class ViewController: UIViewController {
     
     var CoinArray = [Data]()
-    
-    weak var delegate : CoinTableViewDelegate?
     var refreshController: UIRefreshControl?
     let tableView = UITableView()
     
@@ -24,7 +18,6 @@ class ViewController: UIViewController {
         
         setupRefreshController()
        
-        
         let annnonymousfunc = { (fetchedCoinArray : [Data]) in
             DispatchQueue.main.async {
                 self.CoinArray = fetchedCoinArray
@@ -70,8 +63,12 @@ class ViewController: UIViewController {
     @objc func handleRefresh(_ sender: Any?) {
         
         tableView.reloadData()
-        delegate?.didTapRefreshButton()
         refreshController?.endRefreshing()
+        if tableView.refreshControl?.isRefreshing == true{
+            print("Refreshing...")
+                }else{
+                    print("Calling API")
+                }
     }
     
 }
